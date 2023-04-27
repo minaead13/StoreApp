@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct ProductCellView: View {
+    let product: Product
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading){
+            HStack(alignment: .firstTextBaseline){
+                Text(product.title)
+                    .bold()
+                Spacer()
+                
+                Text(product.price, format: .currency(code: Locale.currencyCode))
+                    .padding(5)
+                    .foregroundColor(.white)
+                    .background {
+                        Color.green
+                    }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+            }
+            Text(product.description)
+        }
     }
 }
 
 struct ProductCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCellView()
+        ProductCellView(product: Product.preview)
     }
 }
